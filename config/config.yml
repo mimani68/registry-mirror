@@ -17,8 +17,4 @@ health:
     interval: 10s
     threshold: 3
 proxy:
-  remoteurl: https://registry-1.docker.io
-  # username: [username]
-  # password: [password]
-#auth:
-#  false
+  remoteurl: https://qxx96o44.mirror.aliyuncs.com

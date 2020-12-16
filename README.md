@@ -14,17 +14,16 @@
 Clone this repo:
 
 ```bash
-$ git clone git@github.com:maxmasetti/docker-compose-registry.git registry
+$ git clone git@github.com:duanhongyi/registry-mirror.git
 ```
 or 
 
 ```bash
-$ git clone https://github.com/maxmasetti/docker-compose-registry.git registry
+$ git clone https://github.com/duanhongyi/registry-mirror.git
 ```
 and start it up:
 
 ```bash
-$ cd registry
 $ docker-compose up
 ```
 It's done.

@@ -1,8 +1,8 @@
-version: '3.3'
+version: '3'
 
 services:
   registry:
-    container_name: registry
+    container_name: registry-mirrors
     restart: always
     image: registry
     ports:
@@ -10,7 +10,3 @@ services:
     volumes:
       - ./config/config.yml:/etc/docker/registry/config.yml:ro
       - ./data:/var/lib/registry:rw
-  #environment:
-    #- "STANDALONE=true"
-    #- "MIRROR_SOURCE=https://registry-1.docker.io"
-    #- "MIRROR_SOURCE_INDEX=https://index.docker.io"
