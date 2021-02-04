@@ -17,4 +17,4 @@ health:
     interval: 10s
     threshold: 3
 proxy:
-  remoteurl: https://qxx96o44.mirror.aliyuncs.com
+  remoteurl: https://gcr.io

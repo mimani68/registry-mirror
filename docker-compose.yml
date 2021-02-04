@@ -1,12 +1,29 @@
 version: '3'
 
 services:
-  registry:
-    container_name: registry-mirrors
+  docker:
     restart: always
     image: registry
     ports:
       - 5000:5000
     volumes:
-      - ./config/config.yml:/etc/docker/registry/config.yml:ro
-      - ./data:/var/lib/registry:rw
+      - ./config/docker.yml:/etc/docker/registry/config.yml:ro
+      - ./data/docker:/var/lib/registry:rw
+
+  gcr:
+    restart: always
+    image: registry
+    ports:
+      - 5001:5000
+    volumes:
+      - ./config/gcr.yml:/etc/docker/registry/config.yml:ro
+      - ./data/gcr:/var/lib/registry:rw
+
+  quay:
+    restart: always
+    image: registry
+    ports:
+      - 5002:5000
+    volumes:
+      - ./config/quay.yml:/etc/docker/registry/config.yml:ro
+      - ./data/quay:/var/lib/registry:rw
