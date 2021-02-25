@@ -27,3 +27,12 @@ services:
     volumes:
       - ./config/quay.yml:/etc/docker/registry/config.yml:ro
       - ./data/quay:/var/lib/registry:rw
+
+  k8s:
+    restart: always
+    image: registry
+    ports:
+      - 5003:5000
+    volumes:
+      - ./config/k8s.yml:/etc/docker/registry/config.yml:ro
+      - ./data/k8s:/var/lib/registry:rw
