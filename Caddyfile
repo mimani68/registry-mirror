@@ -1,4 +1,4 @@
-docker-mirror.drycc.cc:443 {
+hub.dckr.ir:443 {
     encode gzip
     reverse_proxy /* {
        to http://docker:5000
@@ -18,7 +18,7 @@ docker-mirror.drycc.cc:443 {
     }
 }
 
-gcr-mirror.drycc.cc:443 {
+gcr.dckr.ir:443 {
     encode gzip
     reverse_proxy /* {
        to http://gcr:5000
@@ -38,7 +38,7 @@ gcr-mirror.drycc.cc:443 {
     }
 }
 
-quay-mirror.drycc.cc:443 {
+quay.dckr.ir:443 {
     encode gzip
     reverse_proxy /* {
        to http://quay:5000
@@ -58,7 +58,7 @@ quay-mirror.drycc.cc:443 {
     }
 }
 
-k8s-mirror.drycc.cc:443 {
+k8s.dckr.ir:443 {
     encode gzip
     reverse_proxy /* {
        to http://k8s:5000

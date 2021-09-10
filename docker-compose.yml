@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
   caddy:
@@ -15,25 +15,25 @@ services:
     image: registry
     volumes:
       - ./config/docker.yml:/etc/docker/registry/config.yml:ro
-      - ./data/docker:/var/lib/registry:rw
+      - docker-registery:/var/lib/registry:rw
 
   gcr:
     restart: always
     image: registry
     volumes:
       - ./config/gcr.yml:/etc/docker/registry/config.yml:ro
-      - ./data/gcr:/var/lib/registry:rw
+      - gcr-registery:/var/lib/registry:rw
 
   quay:
     restart: always
     image: registry
     volumes:
       - ./config/quay.yml:/etc/docker/registry/config.yml:ro
-      - ./data/quay:/var/lib/registry:rw
+      - quay-registery:/var/lib/registry:rw
 
   k8s:
     restart: always
     image: registry
     volumes:
       - ./config/k8s.yml:/etc/docker/registry/config.yml:ro
-      - ./data/k8s:/var/lib/registry:rw
+      - k8s-registery:/var/lib/registry:rw
