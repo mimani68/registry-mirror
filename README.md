@@ -1,15 +1,17 @@
-# Docker registry cache
+# Docker registry
 
 ![License](https://img.shields.io/packagist/l/cakephp/app.svg?style=flat-square)
 
-## Concept
+## Features
 
-- Create a Docker registry cache for local network to speed up docker image download and keep a lower bandwidth.
-- Use docker-compose.
+- Simple, Small, Secure docker registery
+- Proxy docker, gcr, quay, k8s
+- Use secure transportation by helping HTTPS
+- Memeory usage < 35mb and very small computation resource
 
-## Cache (server) setup
+## Installations
 
-### Clone this repo:
+### Clone Source:
 
 ```bash
 $ git clone https://github.com/mimani68/registry-mirror.git
@@ -28,7 +30,7 @@ Modify or create the file `/etc/docker/daemon.json` and add the local mirror set
 
 ```json
 {
-  "registry-mirrors": ["http://<my-docker-mirror-host-ip>:5000"]
+  "registry-mirrors": ["https://hub.dckr.ir"]
 }
 ```
 
@@ -39,41 +41,8 @@ $ service docker stop
 $ service docker sart
 ```
 
-## Test
-Verify that everything is working correctly running a new image on the client while watching server's log. First check if the required image is locally available,
+and finally you can download files using below command.
 
 ```bash
-$ docker image ls -a
-REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-...
-hello-world                   latest              48b5124b2768        14 months ago       1.84kB
-...
+$ docker pull apline:latest
 ```
-and remove it (hello-world in this case) if exists:
-
-```bash
-$ docker image rm 48b5124b2768
-```
-Verify your registry cache is empty. From the client query the server trhough the exposed API:
-
-```bash
-$ curl http://<my-docker-mirror-host-ip>:5000/v2/_catalog
-# outputs -> {"repositories":[]}
-```
-
-In the client, run hello-world:
-
-```bash
-$ docker run hello-world
-```
-and verify it is present on your registry cache (server):
-
-```bash
-$ curl http://<my-docker-mirror-host-ip>:5000/v2/_catalog
-# outputs -> {"repositories":["library/busybox"]}
-```
-
-In the server log some line should pass showing desired activity too.
-The images downloaded will be stored in the server `data` folder and listed in the nested folder `data/docker/registry/v2/repositories/library/`.
-
-
