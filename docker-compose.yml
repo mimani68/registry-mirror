@@ -21,7 +21,7 @@ services:
     restart: always
     image: registry
     volumes:
-      - ./config/docker.yml:/etc/docker/registry/config.yml:ro
+      # - ./config/docker.yml:/etc/docker/registry/config.yml:ro
       - docker-registry:/var/lib/registry:rw
 
   gcr:
