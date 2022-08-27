@@ -38,6 +38,26 @@ gcr.dckr.ir:443 {
     }
 }
 
+ghcr.dckr.ir:443 {
+    encode gzip
+    reverse_proxy /* {
+       to http://ghcr:5000
+        max_fails 3 
+        fail_duration 30s
+        header_up Host {host}
+        header_up X-Real-IP {remote}
+        header_up X-Forwarded-For {remote}
+        header_up X-Forwarded-Port {server_port}
+        header_up X-Forwarded-Protocol {scheme}
+        transport http {
+            keepalive 1024s
+        }
+    }
+    tls {
+        protocols tls1.2 
+    }
+}
+
 quay.dckr.ir:443 {
     encode gzip
     reverse_proxy /* {
@@ -58,10 +78,30 @@ quay.dckr.ir:443 {
     }
 }
 
-k8s.dckr.ir:443 {
+k8sio.dckr.ir:443 {
     encode gzip
     reverse_proxy /* {
-       to http://k8s:5000
+       to http://k8sio:5000
+        max_fails 3 
+        fail_duration 30s
+        header_up Host {host}
+        header_up X-Real-IP {remote}
+        header_up X-Forwarded-For {remote}
+        header_up X-Forwarded-Port {server_port}
+        header_up X-Forwarded-Protocol {scheme}
+        transport http {
+            keepalive 1024s
+        }
+    }
+    tls {
+        protocols tls1.2 
+    }
+}
+
+k8sgcr.dckr.ir:443 {
+    encode gzip
+    reverse_proxy /* {
+       to http://k8sgcr:5000
         max_fails 3 
         fail_duration 30s
         header_up Host {host}

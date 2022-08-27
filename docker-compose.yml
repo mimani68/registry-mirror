@@ -4,7 +4,9 @@ volumes:
   docker-registry: {}
   gcr-registry: {}
   quay-registry: {}
-  k8s-registry: {}
+  k8sio-registry: {}
+  k8sgcr-registry: {}
+  ghcr-registry: {}
   gitlab-registry: {}
 
 services:
@@ -25,6 +27,20 @@ services:
       - ./config/docker.yml:/etc/docker/registry/config.yml:ro
       - docker-registry:/var/lib/registry:rw
 
+  k8sio:
+    restart: always
+    image: registry
+    volumes:
+      - ./config/k8sio.yml:/etc/docker/registry/config.yml:ro
+      - k8sio-registry:/var/lib/registry:rw
+
+  k8sgcr:
+    restart: always
+    image: registry
+    volumes:
+      - ./config/k8sgcr.yml:/etc/docker/registry/config.yml:ro
+      - k8sgcr-registry:/var/lib/registry:rw
+
   gcr:
     restart: always
     image: registry
@@ -39,12 +55,12 @@ services:
       - ./config/quay.yml:/etc/docker/registry/config.yml:ro
       - quay-registry:/var/lib/registry:rw
 
-  k8s:
+  ghcr:
     restart: always
     image: registry
     volumes:
-      - ./config/k8s.yml:/etc/docker/registry/config.yml:ro
-      - k8s-registry:/var/lib/registry:rw
+      - ./config/ghcr.yml:/etc/docker/registry/config.yml:ro
+      - ghcr-registry:/var/lib/registry:rw
 
   gitlab:
     restart: always
