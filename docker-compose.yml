@@ -5,6 +5,7 @@ volumes:
   gcr-registry: {}
   quay-registry: {}
   k8s-registry: {}
+  gitlab-registry: {}
 
 services:
 
@@ -44,3 +45,10 @@ services:
     volumes:
       - ./config/k8s.yml:/etc/docker/registry/config.yml:ro
       - k8s-registry:/var/lib/registry:rw
+
+  gitlab:
+    restart: always
+    image: registry
+    volumes:
+      - ./config/gitlab.yml:/etc/docker/registry/config.yml:ro
+      - gitlab-registry:/var/lib/registry:rw
